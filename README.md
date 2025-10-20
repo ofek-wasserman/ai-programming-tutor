@@ -37,32 +37,39 @@ git clone https://github.com/ofek-wasserman/ai-programming-tutor.git
 cd ai-programming-tutor
 ```
 
-### Step 2: Install Dependencies
+### Step 2: Create Virtual Environment
+```bash
+# Create virtual environment
+python3 -m venv .venv
+
+# Activate it
+source .venv/bin/activate  # On Mac/Linux
+# .venv\Scripts\activate   # On Windows
+
+# You should see (.venv) in your terminal prompt
+```
+
+### Step 3: Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-### Step 3: Set Up Environment Variables
+### Step 4: Set Up Environment Variables
 1. Copy `.env.example` to `.env`
-2. Add your API keys:
-   ```
-   OPENAI_API_KEY=your_openai_key_here
-   ANTHROPIC_API_KEY=your_anthropic_key_here
-   ```
-
-### Step 4: (Optional) Install Ollama for Local Llama
-If you want to use the Llama model:
-1. Install Ollama from https://ollama.ai
-2. Pull the Llama model:
-   ```bash
-   ollama pull llama3.2
-   ```
+```bash
+   cp .env.example .env
+```
+2. Edit `.env` and add your API keys
 
 ## Usage
 
 ### Run the Application
 ```bash
-python ai_programming_tutor.py
+# Make sure virtual environment is activated
+source .venv/bin/activate  # If not already active
+
+# Run the app
+python src/ai_programming_tutor.py
 ```
 
 This will:
@@ -113,6 +120,7 @@ ai-programming-tutor/
 ├── requirements.txt
 ├── .env.example
 ├── .env
+├── .venv/               # Virtual environment (gitignored)
 ├── .gitignore
 ├── LICENSE
 └── screenshots/
@@ -145,9 +153,16 @@ Check current pricing:
 - Verify your API keys are valid and active
 
 ### "Module not found" error
+- Make sure virtual environment is activated: `source .venv/bin/activate`
 - Run `pip install -r requirements.txt` again
-- Make sure you're using Python 3.11+
-- Check that you're in the correct virtual environment
+- Make sure you're using Python 3.8+
+- Check that you're in the project directory
+
+### Virtual environment issues
+- To deactivate: `deactivate`
+- To reactivate: `source .venv/bin/activate`
+- If `.venv/` is corrupted, delete it and recreate: `python3 -m venv .venv`
+- Make sure you activated venv before installing packages
 
 ### Llama model is not working
 - Make sure Ollama is installed: https://ollama.ai
